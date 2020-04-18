@@ -1,0 +1,7 @@
+{
+  "name": "@ecommerse/custom-types",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "types": "index"
+}
