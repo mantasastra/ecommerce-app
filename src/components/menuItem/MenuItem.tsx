@@ -1,6 +1,19 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
 import styled from "@emotion/styled";
-import { MenuItemProps } from "custom-types";
+
+type PathParams = {
+  param: string;
+};
+
+type MenuItemProps = {
+  key: number;
+  title: string;
+  imageUrl: string;
+  linkUrl: string;
+  size?: string;
+} & RouteComponentProps;
 
 const Item = styled.div`
   min-width: 30%;
@@ -80,13 +93,14 @@ const Subtitle = styled.span`
   font-size: 16px;
 `;
 
-const MenuItem: React.FunctionComponent<MenuItemProps> = ({
-  title,
-  imageUrl,
-  size,
-}: MenuItemProps) => {
+const MenuItem: React.FunctionComponent<
+  RouteComponentProps<PathParams> & MenuItemProps
+> = ({ title, imageUrl, size, linkUrl, history, match }: MenuItemProps) => {
   return (
-    <Item className={`${size}`}>
+    <Item
+      className={`${size}`}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
       <ItemBackground
         style={{
           backgroundImage: `url(${imageUrl})`,
@@ -100,4 +114,4 @@ const MenuItem: React.FunctionComponent<MenuItemProps> = ({
   );
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);

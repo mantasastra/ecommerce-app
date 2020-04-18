@@ -1,9 +1,10 @@
 declare module "custom-types" {
   type Section = {
     id: number;
-    title: String;
-    imageUrl: String;
-    size?: String;
+    title: string;
+    imageUrl: string;
+    linkUrl: string;
+    size?: string;
   };
 
   export type Sections = Section[];
@@ -11,11 +12,4 @@ declare module "custom-types" {
   export type DirectoryProps = any;
 
   export type DirectoryState = { sections: Sections };
-
-  export type MenuItemProps = {
-    key: number;
-    title: String;
-    imageUrl: String;
-    size?: String;
-  };
 }
