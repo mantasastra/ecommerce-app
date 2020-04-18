@@ -1,9 +1,21 @@
 declare module "custom-types" {
-  export type MenuItemProps = {
+  type Section = {
+    id: number;
     title: String;
+    imageUrl: String;
+    size?: String;
   };
 
-  type MenuItemTitle = String;
+  export type Sections = Section[];
 
-  export type MenuItemTitles = Array<MenuItemTitle>;
+  export type DirectoryProps = any;
+
+  export type DirectoryState = { sections: Sections };
+
+  export type MenuItemProps = {
+    key: number;
+    title: String;
+    imageUrl: String;
+    size?: String;
+  };
 }
