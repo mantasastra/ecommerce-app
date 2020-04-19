@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import styled from "@emotion/styled";
 import { ShopProps, ShopState, ShopCollections } from "custom-types";
 import SHOP_DATA from "../../data/shopData";
+
+import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
+
+const Shop = styled.div``;
 
 class ShopPage extends Component<ShopProps, ShopState> {
   state = {
@@ -8,7 +13,14 @@ class ShopPage extends Component<ShopProps, ShopState> {
   } as ShopState;
 
   render() {
-    return <div>Shop Page</div>;
+    const { collections } = this.state;
+    return (
+      <Shop>
+        {collections.map(({ id, ...collectionProps }) => (
+          <CollectionPreview key={id} {...collectionProps} />
+        ))}
+      </Shop>
+    );
   }
 }
 

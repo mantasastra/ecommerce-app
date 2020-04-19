@@ -22,8 +22,9 @@ declare module "custom-types" {
     price: number;
   };
 
-  type ShopCollection = {
-    id: number;
+  export type ShopCollection = {
+    id?: number;
+    key: number;
     title: string;
     routeName: string;
     items: ShopItem[];
