@@ -32,7 +32,7 @@ const FooterName = styled.span`
 `;
 
 const FooterPrice = styled.span`
-  width: 10%;
+  width: 15%;
 `;
 
 const CollectionItem: React.FunctionComponent<ShopItem> = ({
@@ -50,7 +50,7 @@ const CollectionItem: React.FunctionComponent<ShopItem> = ({
       />
       <Footer>
         <FooterName>{name}</FooterName>
-        <FooterPrice>{price}</FooterPrice>
+        <FooterPrice>{price}&euro;</FooterPrice>
       </Footer>
     </Item>
   );
