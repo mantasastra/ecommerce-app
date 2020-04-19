@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { DirectoryProps, DirectoryState, Sections } from "custom-types";
-import DirectoryData from "../../data/directoryData";
+import DIRECTORY_DATA from "../../data/directoryData";
 
 import MenuItem from "../menuItem/MenuItem";
 
@@ -14,7 +14,7 @@ const DirectoryMenu = styled.div`
 
 class Directory extends Component<DirectoryProps, DirectoryState> {
   state = {
-    sections: DirectoryData as Sections,
+    sections: DIRECTORY_DATA as Sections,
   } as DirectoryState;
 
   render() {

@@ -12,4 +12,24 @@ declare module "custom-types" {
   export type DirectoryProps = any;
 
   export type DirectoryState = { sections: Sections };
+
+  export type ShopProps = any;
+
+  type ShopItem = {
+    id: number;
+    name: string;
+    imageUrl: string;
+    price: number;
+  };
+
+  type ShopCollection = {
+    id: number;
+    title: string;
+    routeName: string;
+    items: ShopItem[];
+  };
+
+  export type ShopCollections = ShopCollection[];
+
+  export type ShopState = { collections: ShopCollections };
 }
