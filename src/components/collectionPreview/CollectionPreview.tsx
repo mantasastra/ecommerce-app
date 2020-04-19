@@ -2,13 +2,23 @@ import React from "react";
 import styled from "@emotion/styled";
 import { ShopCollection } from "custom-types";
 
-const Collection = styled.div``;
+import CollectionItem from "../../components/collectionItem/CollectionItem";
 
-const Title = styled.h1``;
+const Collection = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+`;
 
-const Preview = styled.div``;
+const Title = styled.h1`
+  font-size: 28px;
+  margin-bottom: 25px;
+`;
 
-const Item = styled.div``;
+const Preview = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const CollectionPreview: React.FunctionComponent<ShopCollection> = ({
   title,
@@ -20,8 +30,8 @@ const CollectionPreview: React.FunctionComponent<ShopCollection> = ({
       <Preview>
         {items
           .filter((item, index) => index < 4)
-          .map((item) => (
-            <Item key={item.id}>{item.name}</Item>
+          .map(({ id, ...itemProps }) => (
+            <CollectionItem key={id} {...itemProps} />
           ))}
       </Preview>
     </Collection>

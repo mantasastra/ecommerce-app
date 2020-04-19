@@ -15,8 +15,9 @@ declare module "custom-types" {
 
   export type ShopProps = any;
 
-  type ShopItem = {
-    id: number;
+  export type ShopItem = {
+    id?: number;
+    key: number;
     name: string;
     imageUrl: string;
     price: number;
