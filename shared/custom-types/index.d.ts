@@ -47,6 +47,10 @@ declare module "custom-types" {
       colors: {
         mainColor: string;
         subColor: string;
+        buttonColor: string;
+        buttonTextColor: string;
+        buttonBackgroundColor: string;
+        buttonHoverTextColor: string;
       };
     };
   };

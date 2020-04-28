@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { SignInProps, SignInState } from "custom-types";
+
 import FormInput from "../formInput/FormInput";
+import CustomButton from "../customButton/CustomButton";
 
 const SignInContainer = styled.div`
   width: 30vw;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.h2`
+  margin: 10px 0;
 `;
 
 class SignIn extends Component<SignInProps, SignInState> {
@@ -28,7 +36,7 @@ class SignIn extends Component<SignInProps, SignInState> {
   render() {
     return (
       <SignInContainer>
-        <h2>I already have an account</h2>
+        <Title>I already have an account</Title>
         <span>Sign in with your email and password</span>
 
         <form onSubmit={this.handleSubmit}>
@@ -50,7 +58,7 @@ class SignIn extends Component<SignInProps, SignInState> {
             required
           />
 
-          <input type="submit" value="Submit Form" />
+          <CustomButton type="submit">Sign In</CustomButton>
         </form>
       </SignInContainer>
     );
