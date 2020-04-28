@@ -1,4 +1,10 @@
 declare module "custom-types" {
+  export type DirectoryProps = any;
+
+  export type DirectoryState = { sections: Sections };
+
+  export type Sections = Section[];
+
   type Section = {
     id: number;
     title: string;
@@ -6,12 +12,6 @@ declare module "custom-types" {
     linkUrl: string;
     size?: string;
   };
-
-  export type Sections = Section[];
-
-  export type DirectoryProps = any;
-
-  export type DirectoryState = { sections: Sections };
 
   export type ShopProps = any;
 
@@ -34,4 +34,20 @@ declare module "custom-types" {
   export type ShopCollections = ShopCollection[];
 
   export type ShopState = { collections: ShopCollections };
+
+  export type SignInProps = any;
+
+  export type SignInState = {
+    email: string;
+    password: string;
+  };
+
+  export type ThemeProps = {
+    theme: {
+      colors: {
+        mainColor: string;
+        subColor: string;
+      };
+    };
+  };
 }
