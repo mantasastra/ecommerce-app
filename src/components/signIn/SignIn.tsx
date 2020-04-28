@@ -5,8 +5,10 @@ import { SignInProps, SignInState } from "custom-types";
 import FormInput from "../formInput/FormInput";
 import CustomButton from "../customButton/CustomButton";
 
+import { signInWithGoogle } from "../../firebase/firebase.utils";
+
 const SignInContainer = styled.div`
-  width: 30vw;
+  width: 35vw;
   display: flex;
   flex-direction: column;
 `;
@@ -59,6 +61,9 @@ class SignIn extends Component<SignInProps, SignInState> {
           />
 
           <CustomButton type="submit">Sign In</CustomButton>
+          <CustomButton onClick={signInWithGoogle}>
+            Sign In with Google
+          </CustomButton>
         </form>
       </SignInContainer>
     );

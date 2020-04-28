@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { ThemeProps } from "custom-types";
 
 type CustomButtonProps = {
-  type: string;
+  type?: string;
   children: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -18,6 +18,7 @@ const Button = styled.button`
   background-color: ${(props: ThemeProps) => props.theme.colors.buttonColor};
   color: ${(props: ThemeProps) => props.theme.colors.buttonTextColor};
   text-transform: uppercase;
+  font-size: 12px;
   font-weight: bolder;
   border: none;
   cursor: pointer;
