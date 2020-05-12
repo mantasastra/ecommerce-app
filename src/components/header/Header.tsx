@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-
+import { auth } from "../../firebase/firebase.utils";
 import { ReactComponent as LogoSVG } from "../../assets/images/logo.svg";
+
+type HeaderProps = {
+  currentUser: Object | null;
+};
 
 const Nav = styled.nav`
   height: 70px;
@@ -33,18 +37,29 @@ const Options = styled.div`
   text-decoration: none;
 `;
 
-const Option = styled(Link)`
+const OptionLink = styled(Link)`
   padding: 10px 15px;
+  cursor: pointer;
 `;
 
-const Header: React.FunctionComponent<Object> = () => (
+const Option = styled.div`
+  padding: 10px 15px;
+  cursor: pointer;
+`;
+
+const Header: React.FunctionComponent<HeaderProps> = ({ currentUser }) => (
   <Nav>
     <LogoContainer to="/">
       <Logo />
     </LogoContainer>
     <Options>
-      <Option to="/shop">SHOP</Option>
-      <Option to="/contact">CONTACT</Option>
+      <OptionLink to="/shop">SHOP</OptionLink>
+      <OptionLink to="/contact">CONTACT</OptionLink>
+      {currentUser ? (
+        <Option onClick={() => auth.signOut()}>SIGN OUT</Option>
+      ) : (
+        <OptionLink to="/signin">SIGN IN</OptionLink>
+      )}
     </Options>
   </Nav>
 );

@@ -8,13 +8,18 @@ import CustomButton from "../customButton/CustomButton";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 const SignInContainer = styled.div`
-  width: 35vw;
+  width: 395px;
   display: flex;
   flex-direction: column;
 `;
 
 const Title = styled.h2`
   margin: 10px 0;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 class SignIn extends Component<SignInProps, SignInState> {
@@ -60,10 +65,12 @@ class SignIn extends Component<SignInProps, SignInState> {
             required
           />
 
-          <CustomButton type="submit">Sign In</CustomButton>
-          <CustomButton onClick={signInWithGoogle}>
-            Sign In with Google
-          </CustomButton>
+          <Buttons>
+            <CustomButton type="submit">Sign In</CustomButton>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+              Sign In with Google
+            </CustomButton>
+          </Buttons>
         </form>
       </SignInContainer>
     );

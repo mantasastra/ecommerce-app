@@ -1,10 +1,13 @@
 import React, { ButtonHTMLAttributes } from "react";
 import styled from "@emotion/styled";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { ThemeProps } from "custom-types";
 
 type CustomButtonProps = {
   type?: string;
   children: string;
+  isGoogleSignIn?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = styled.button`
@@ -32,8 +35,29 @@ const Button = styled.button`
   }
 `;
 
-const CustomButton = ({ children, ...otherProps }: CustomButtonProps) => (
-  <Button {...otherProps}>{children}</Button>
+const CustomButton = ({
+  children,
+  isGoogleSignIn,
+  ...otherProps
+}: CustomButtonProps) => (
+  <Button
+    css={
+      isGoogleSignIn
+        ? css`
+            background-color: #4285f4;
+            color: white;
+
+            &:hover {
+              background-color: #357ae8;
+              border: none;
+            }
+          `
+        : ""
+    }
+    {...otherProps}
+  >
+    {children}
+  </Button>
 );
 
 export default CustomButton;
