@@ -31,7 +31,7 @@ const CollectionPreview: React.FunctionComponent<ShopCollection> = ({
         {items
           .filter((item, index) => index < 4)
           .map(({ id, ...itemProps }) => (
-            <CollectionItem {...itemProps} />
+            <CollectionItem {...itemProps} key={id as number} />
           ))}
       </Preview>
     </Collection>

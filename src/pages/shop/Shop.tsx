@@ -17,7 +17,7 @@ class ShopPage extends Component<ShopProps, ShopState> {
     return (
       <Shop>
         {collections.map(({ id, ...collectionProps }) => (
-          <CollectionPreview {...collectionProps} />
+          <CollectionPreview {...collectionProps} key={id as number} />
         ))}
       </Shop>
     );
