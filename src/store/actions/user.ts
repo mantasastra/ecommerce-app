@@ -1,9 +1,7 @@
-import { Action } from "custom-types"
-import * as types from "./actionTypes"
+import { User, UserActionTypes } from "custom-types";
+import { SET_CURRENT_USER } from "./actionTypes";
 
-type User = Object
-
-export const setCurrentUser = (user: User): Action => ({
-    type: types.SET_CURRENT_USER,
+export const setCurrentUser = (user: User): UserActionTypes => ({
+    type: SET_CURRENT_USER,
     payload: user
 })

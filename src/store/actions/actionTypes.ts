@@ -1,1 +1,3 @@
-export const SET_CURRENT_USER: string = 'SET_CURRENT_USER'
+import { SetCurrentUserType } from "custom-types";
+
+export const SET_CURRENT_USER: SetCurrentUserType = 'SET_CURRENT_USER'

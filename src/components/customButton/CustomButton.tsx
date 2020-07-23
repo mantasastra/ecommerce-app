@@ -17,7 +17,6 @@ const Button = styled.button`
   letter-spacing: 0.5px;
   line-height: 50px;
   padding: 0 35px 0 35px;
-  font-size: 15px;
   background-color: ${(props: ThemeProps) => props.theme.colors.buttonColor};
   color: ${(props: ThemeProps) => props.theme.colors.buttonTextColor};
   text-transform: uppercase;

@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { connect, ConnectedProps } from "react-redux";
+import { UserState } from "custom-types";
+
 import { auth } from "../../firebase/firebase.utils";
 import { ReactComponent as LogoSVG } from "../../assets/images/logo.svg";
 
-type HeaderProps = {
-  currentUser: Object | null;
-};
+interface RootState {
+  user: UserState;
+}
 
 const Nav = styled.nav`
   height: 70px;
@@ -47,7 +50,15 @@ const Option = styled.div`
   cursor: pointer;
 `;
 
-const Header: React.FunctionComponent<HeaderProps> = ({ currentUser }) => (
+const mapStateToProps = (state: RootState) => ({
+  currentUser: state.user.currentUser,
+});
+
+const connector = connect(mapStateToProps);
+
+type HeaderProps = ConnectedProps<typeof connector>;
+
+const Header = ({ currentUser }: HeaderProps) => (
   <Nav>
     <LogoContainer to="/">
       <Logo />
@@ -64,4 +75,4 @@ const Header: React.FunctionComponent<HeaderProps> = ({ currentUser }) => (
   </Nav>
 );
 
-export default Header;
+export default connector(Header);

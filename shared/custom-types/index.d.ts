@@ -35,11 +35,6 @@ declare module "custom-types" {
 
   export type ShopState = { collections: ShopCollections };
 
-  export type Action = {
-        type: string,
-        payload: Object | string
-    }
-
   export type ThemeProps = {
     theme: {
       colors: {
@@ -52,4 +47,20 @@ declare module "custom-types" {
       };
     };
   };
+
+  // REDUX TYPES
+  export type SetCurrentUserType = 'SET_CURRENT_USER';
+
+  export type User = Object | null;
+
+  export interface UserState {
+      currentUser: User
+  }
+
+  interface SetCurrentUser {
+      type: SetCurrentUserType,
+      payload: User
+  }
+
+  export type UserActionTypes = SetCurrentUser
 }
