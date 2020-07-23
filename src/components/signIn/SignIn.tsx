@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
-import { SignInProps, SignInState } from "custom-types";
 
 import FormInput from "../formInput/FormInput";
 import CustomButton from "../customButton/CustomButton";
 
 import { signInWithGoogle } from "../../firebase/firebase.utils";
+
+export type SignInProps = any;
+
+export type SignInState = {
+    email: string;
+    password: string;
+};
 
 const SignInContainer = styled.div`
   width: 395px;

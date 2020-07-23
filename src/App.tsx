@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import "./App.css";
 import { ThemeProvider } from "emotion-theming";
-import theme from "./Theme/theme";
-import { auth } from "./firebase/firebase.utils";
+import { Unsubscribe } from "firebase";
 
+import { auth, createUserProfileDoc } from "./firebase/firebase.utils";
+import theme from "./Theme/theme";
 import Header from "./components/header/Header";
 import HomePage from "./pages/homePage/HomePage";
 import ShopPage from "./pages/shop/Shop";
 import SignInAndSignUpPage from "./pages/signInAndSignUp/SignInAndSignUp";
-import { Unsubscribe } from "firebase";
+
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -19,7 +20,21 @@ class App extends Component {
   unsubscribeFromAuth: Unsubscribe | null = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userRef = await createUserProfileDoc(user);
+
+        userRef?.onSnapshot((snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          });
+        });
+      }
+      console.log(this.state);
+
       this.setState({ currentUser: user });
     });
   }

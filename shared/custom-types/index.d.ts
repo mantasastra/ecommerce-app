@@ -35,13 +35,6 @@ declare module "custom-types" {
 
   export type ShopState = { collections: ShopCollections };
 
-  export type SignInProps = any;
-
-  export type SignInState = {
-    email: string;
-    password: string;
-  };
-
   export type ThemeProps = {
     theme: {
       colors: {
