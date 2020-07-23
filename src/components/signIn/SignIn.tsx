@@ -4,13 +4,13 @@ import styled from "@emotion/styled";
 import FormInput from "../formInput/FormInput";
 import CustomButton from "../customButton/CustomButton";
 
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
 export type SignInProps = any;
 
 export type SignInState = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 const SignInContainer = styled.div`
@@ -34,10 +34,16 @@ class SignIn extends Component<SignInProps, SignInState> {
     password: "",
   } as SignInState;
 
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { email, password } = this.state;
 
-    this.setState({ email: "", password: "" });
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: "", password: "" });
+    } catch (err) {
+      alert(err);
+    }
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
