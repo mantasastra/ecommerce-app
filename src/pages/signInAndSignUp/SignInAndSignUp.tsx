@@ -8,6 +8,15 @@ const SignInAndSignUp = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 30px auto;
+
+  @media screen and (max-width: 950px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .sign-up:nth-child(2) {
+      margin-top: 7rem;
+    }
+  }
 `;
 
 const SignInAndSignUpPage = () => (
