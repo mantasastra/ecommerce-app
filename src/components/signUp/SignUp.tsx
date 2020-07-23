@@ -71,7 +71,7 @@ class SignUp extends Component<SignUpProps, SignUpState> {
     const { displayName, email, password, confirmPassword } = this.state;
 
     return (
-      <SignUpContainer>
+      <SignUpContainer className="sign-up">
         <Title>I do not have an account</Title>
         <span>Sign up with your email or password</span>
         <form className="sign-up-form" onSubmit={this.handleSubmit}>

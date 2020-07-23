@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-app",
   "author": "Mantas Astrauskas",
-  "description": "E-commerce application built using React, TS...",
+  "description": "E-commerce application built using React, TS & Redux",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,14 +14,19 @@
     "@types/node": "^13.13.0",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.4",
+    "@types/redux-logger": "^3.0.8",
     "emotion-theming": "^10.0.27",
     "firebase": "^7.14.2",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "typescript": "^3.8.3"
   },
   "scripts": {
