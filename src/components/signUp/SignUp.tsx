@@ -108,7 +108,9 @@ class SignUp extends Component<SignUpProps, SignUpState> {
             required
           />
 
-          <CustomButton type="submit">Sign Up</CustomButton>
+          <CustomButton type="submit" isGoogleSignIn={false} inverted={false}>
+            Sign Up
+          </CustomButton>
         </form>
       </SignUpContainer>
     );

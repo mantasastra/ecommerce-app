@@ -78,11 +78,14 @@ class SignIn extends Component<SignInProps, SignInState> {
           />
 
           <Buttons>
-            <CustomButton type="submit">Sign In</CustomButton>
+            <CustomButton type="submit" isGoogleSignIn={false} inverted={false}>
+              Sign In
+            </CustomButton>
             <CustomButton
               type="button"
               onClick={signInWithGoogle}
               isGoogleSignIn
+              inverted={false}
             >
               Sign In with Google
             </CustomButton>

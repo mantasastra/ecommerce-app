@@ -30,7 +30,13 @@ const CartItems = styled.div`
 const Cart = () => (
   <CartDropdown>
     <CartItems />
-    <CustomButton css={{ marginTop: "auto" }}>GO TO CHECKOUT</CustomButton>
+    <CustomButton
+      css={{ marginTop: "auto" }}
+      isGoogleSignIn={false}
+      inverted={false}
+    >
+      GO TO CHECKOUT
+    </CustomButton>
   </CartDropdown>
 );
 
