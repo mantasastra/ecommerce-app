@@ -39,6 +39,7 @@ declare module "custom-types" {
     theme: {
       colors: {
         mainColor: string;
+        backgroundColor: string;
         subColor: string;
         buttonColor: string;
         buttonTextColor: string;
@@ -48,23 +49,35 @@ declare module "custom-types" {
     };
   };
 
-  // REDUX TYPES
-  export type SetCurrentUserType = 'SET_CURRENT_USER';
+  // REDUX USER TYPES
+  export type SetCurrentUserType = "SET_CURRENT_USER";
 
   export type User = Object | null;
 
   export interface UserState {
-      currentUser: User
-  }
-
-  export interface RootState {
-      user: UserState;
+    currentUser: User;
   }
 
   interface SetCurrentUser {
-      type: SetCurrentUserType,
-      payload: User
+    type: SetCurrentUserType;
+    payload: User;
   }
 
-  export type UserActionTypes = SetCurrentUser
+  export type UserActionTypes = SetCurrentUser;
+
+  // REDUX CART TYPES
+  export type ToggleCartHiddenType = "TOGGLE_CART_HIDDEN";
+
+  export interface CartState {
+    hidden: boolean;
+  }
+
+  export type CartActionTypes = {
+    type: ToggleCartHiddenType;
+  };
+
+  export interface RootState {
+    user: UserState;
+    cart: CartState;
+  }
 }

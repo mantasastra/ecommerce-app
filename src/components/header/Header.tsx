@@ -5,6 +5,8 @@ import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "custom-types";
 
 import { auth } from "../../firebase/firebase.utils";
+import CartIcon from "../cartIcon/CartIcon";
+import CartDropdown from "../cartDropdown/CartDropdown";
 import { ReactComponent as LogoSVG } from "../../assets/images/logo.svg";
 
 const Nav = styled.nav`
@@ -46,15 +48,19 @@ const Option = styled.div`
   cursor: pointer;
 `;
 
-const mapStateToProps = (state: RootState) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({
+  user: { currentUser },
+  cart: { hidden },
+}: RootState) => ({
+  currentUser,
+  hidden,
 });
 
 const connector = connect(mapStateToProps);
 
 type HeaderProps = ConnectedProps<typeof connector>;
 
-const Header = ({ currentUser }: HeaderProps) => (
+const Header = ({ currentUser, hidden }: HeaderProps) => (
   <Nav>
     <LogoContainer to="/">
       <Logo />
@@ -67,7 +73,9 @@ const Header = ({ currentUser }: HeaderProps) => (
       ) : (
         <OptionLink to="/signin">SIGN IN</OptionLink>
       )}
+      <CartIcon />
     </Options>
+    {hidden ? null : <CartDropdown />}
   </Nav>
 );
 

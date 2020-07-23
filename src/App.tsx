@@ -19,6 +19,7 @@ import "./App.css";
 const mapStateToProps = ({ user }: RootState) => ({
   currentUser: user.currentUser,
 });
+
 const mapDispatchToProps = (dispatch: Dispatch<UserActionTypes>) => ({
   setCurrentUser: (user: User) => dispatch(setCurrentUser(user)),
 });
