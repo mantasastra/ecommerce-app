@@ -57,6 +57,10 @@ declare module "custom-types" {
       currentUser: User
   }
 
+  export interface RootState {
+      user: UserState;
+  }
+
   interface SetCurrentUser {
       type: SetCurrentUserType,
       payload: User

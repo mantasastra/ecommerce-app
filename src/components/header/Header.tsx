@@ -2,14 +2,10 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { connect, ConnectedProps } from "react-redux";
-import { UserState } from "custom-types";
+import { RootState } from "custom-types";
 
 import { auth } from "../../firebase/firebase.utils";
 import { ReactComponent as LogoSVG } from "../../assets/images/logo.svg";
-
-interface RootState {
-  user: UserState;
-}
 
 const Nav = styled.nav`
   height: 70px;

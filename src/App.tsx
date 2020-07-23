@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { ThemeProvider } from "emotion-theming";
 import { Unsubscribe } from "firebase";
 import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
-import { UserActionTypes, User } from "custom-types";
+import { RootState, UserActionTypes, User } from "custom-types";
 
 import theme from "./Theme/theme";
 import Header from "./components/header/Header";
@@ -16,11 +16,14 @@ import { setCurrentUser } from "./store/actions/user";
 
 import "./App.css";
 
+const mapStateToProps = ({ user }: RootState) => ({
+  currentUser: user.currentUser,
+});
 const mapDispatchToProps = (dispatch: Dispatch<UserActionTypes>) => ({
   setCurrentUser: (user: User) => dispatch(setCurrentUser(user)),
 });
 
-const connector = connect(null, mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type AppProps = ConnectedProps<typeof connector>;
 
@@ -59,7 +62,16 @@ class App extends Component<AppProps> {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInAndSignUpPage} />
+          <Route
+            path="/signin"
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
         </Switch>
       </ThemeProvider>
     );
