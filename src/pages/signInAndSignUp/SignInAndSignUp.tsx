@@ -12,8 +12,9 @@ const SignInAndSignUp = styled.div`
   @media screen and (max-width: 950px) {
     flex-wrap: wrap;
     flex-direction: column;
+    margin-left: 2rem;
 
-    .sign-up:nth-child(2) {
+    .sign-up:nth-of-type(2) {
       margin-top: 7rem;
     }
   }

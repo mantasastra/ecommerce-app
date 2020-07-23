@@ -35,6 +35,11 @@ declare module "custom-types" {
 
   export type ShopState = { collections: ShopCollections };
 
+  export type Action = {
+        type: string,
+        payload: Object | string
+    }
+
   export type ThemeProps = {
     theme: {
       colors: {
