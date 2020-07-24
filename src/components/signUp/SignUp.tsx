@@ -25,6 +25,8 @@ const Title = styled.h2`
 `;
 
 class SignUp extends Component<SignUpProps, SignUpState> {
+  _isMounted = false;
+
   state = {
     displayName: "",
     email: "",
@@ -50,12 +52,13 @@ class SignUp extends Component<SignUpProps, SignUpState> {
 
       await createUserProfileDoc(user, { displayName });
 
-      this.setState({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
+      if (this._isMounted)
+        this.setState({
+          displayName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
     } catch (err) {
       alert(err);
     }
@@ -64,8 +67,17 @@ class SignUp extends Component<SignUpProps, SignUpState> {
   handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    this.setState({ [name]: value } as Pick<SignUpState, keyof SignUpState>);
+    if (this._isMounted)
+      this.setState({ [name]: value } as Pick<SignUpState, keyof SignUpState>);
   };
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   render() {
     const { displayName, email, password, confirmPassword } = this.state;

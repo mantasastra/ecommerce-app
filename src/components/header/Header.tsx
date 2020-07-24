@@ -5,6 +5,10 @@ import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "custom-types";
 
 import { auth } from "../../firebase/firebase.utils";
+import {
+  selectCurrentUser,
+  selectCartHidden,
+} from "../../store/selectors/selectors";
 import CartIcon from "../cartIcon/CartIcon";
 import CartDropdown from "../cartDropdown/CartDropdown";
 import { ReactComponent as LogoSVG } from "../../assets/images/logo.svg";
@@ -48,12 +52,9 @@ const Option = styled.div`
   cursor: pointer;
 `;
 
-const mapStateToProps = ({
-  user: { currentUser },
-  cart: { hidden },
-}: RootState) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = (state: RootState) => ({
+  currentUser: selectCurrentUser(state),
+  hidden: selectCartHidden(state),
 });
 
 const connector = connect(mapStateToProps);
