@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { jsx } from "@emotion/core";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState, ShopItem, ThemeProps } from "custom-types";
+import { createStructuredSelector } from "reselect";
 
 import { selectCartItems } from "../../store/selectors/selectors";
 import CustomButton from "../customButton/CustomButton";
@@ -31,8 +32,15 @@ const CartItems = styled.div`
   overflow: scroll;
 `;
 
-const mapStateToProps = (state: RootState) => ({
-  cartItems: selectCartItems(state),
+interface CartDropdownSelectors {
+  cartItems: ShopItem[];
+}
+
+const mapStateToProps = createStructuredSelector<
+  RootState,
+  CartDropdownSelectors
+>({
+  cartItems: selectCartItems,
 });
 
 const connector = connect(mapStateToProps, null);

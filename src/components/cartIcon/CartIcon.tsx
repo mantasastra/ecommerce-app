@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { CartActionTypes, RootState } from "custom-types";
+import { createStructuredSelector } from "reselect";
 
 import { toggleCartHidden } from "../../store/actions/cart";
 import { selectCartItemsCount } from "../../store/selectors/selectors";
@@ -30,8 +31,12 @@ const ItemCount = styled.span`
   bottom: 12px;
 `;
 
-const mapStateToProps = (state: RootState) => ({
-  itemCount: selectCartItemsCount(state),
+interface CartIconSelectors {
+  itemCount: number;
+}
+
+const mapStateToProps = createStructuredSelector<RootState, CartIconSelectors>({
+  itemCount: selectCartItemsCount,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<CartActionTypes>) => ({
