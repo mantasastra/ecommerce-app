@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { connect, ConnectedProps } from "react-redux";
@@ -48,15 +49,11 @@ const mapStateToProps = createStructuredSelector<
   cartItems: selectCartItems,
 });
 
-const connector = connect(mapStateToProps, null);
+const connector = connect(mapStateToProps);
 
-type CartProps = ConnectedProps<typeof connector>;
+type CartProps = ConnectedProps<typeof connector> & RouteComponentProps;
 
-const Cart: React.FC<CartProps> = ({
-  cartItems,
-}: {
-  cartItems: ShopItem[];
-}) => (
+const Cart: React.FC<CartProps> = ({ cartItems, history }) => (
   <CartDropdown>
     <CartItems>
       {cartItems.length ? (
@@ -69,10 +66,11 @@ const Cart: React.FC<CartProps> = ({
       css={{ marginTop: "auto" }}
       isGoogleSignIn={false}
       inverted={false}
+      onClick={() => history.push("/checkout")}
     >
       GO TO CHECKOUT
     </CustomButton>
   </CartDropdown>
 );
 
-export default connector(Cart);
+export default withRouter(connector(Cart));
