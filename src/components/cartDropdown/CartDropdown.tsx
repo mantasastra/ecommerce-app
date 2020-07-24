@@ -2,9 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { ThemeProps } from "custom-types";
+import { connect, ConnectedProps } from "react-redux";
+import { RootState, ShopItem, ThemeProps } from "custom-types";
 
 import CustomButton from "../customButton/CustomButton";
+import CartItem from "../cartItem/CartItem";
 
 const CartDropdown = styled.div`
   position: absolute;
@@ -28,9 +30,25 @@ const CartItems = styled.div`
   overflow: scroll;
 `;
 
-const Cart = () => (
+const mapStateToProps = ({ cart }: RootState) => ({
+  cartItems: cart.cartItems,
+});
+
+const connector = connect(mapStateToProps, null);
+
+type CartProps = ConnectedProps<typeof connector>;
+
+const Cart: React.FC<CartProps> = ({
+  cartItems,
+}: {
+  cartItems: ShopItem[];
+}) => (
   <CartDropdown>
-    <CartItems />
+    <CartItems>
+      {cartItems.map((item) => (
+        <CartItem key={item.id} item={item} />
+      ))}
+    </CartItems>
     <CustomButton
       css={{ marginTop: "auto" }}
       isGoogleSignIn={false}
@@ -41,4 +59,4 @@ const Cart = () => (
   </CartDropdown>
 );
 
-export default Cart;
+export default connector(Cart);

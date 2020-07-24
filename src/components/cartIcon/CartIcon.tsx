@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
-import { CartActionTypes } from "custom-types";
+import { CartActionTypes, RootState } from "custom-types";
 
 import { toggleCartHidden } from "../../store/actions/cart";
 import { ReactComponent as ShoppingBag } from "../../assets/images/shopping-bag.svg";
