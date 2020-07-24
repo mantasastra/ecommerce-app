@@ -2,7 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { connect, ConnectedProps } from "react-redux";
-import { RootState } from "custom-types";
+import { RootState, User } from "custom-types";
+import { createStructuredSelector } from "reselect";
 
 import { auth } from "../../firebase/firebase.utils";
 import {
@@ -52,9 +53,14 @@ const Option = styled.div`
   cursor: pointer;
 `;
 
-const mapStateToProps = (state: RootState) => ({
-  currentUser: selectCurrentUser(state),
-  hidden: selectCartHidden(state),
+interface HeaderSelectors {
+  currentUser: User;
+  hidden: boolean;
+}
+
+const mapStateToProps = createStructuredSelector<RootState, HeaderSelectors>({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 const connector = connect(mapStateToProps);

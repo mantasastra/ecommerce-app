@@ -5,6 +5,7 @@ import { Unsubscribe } from "firebase";
 import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { RootState, UserActionTypes, User } from "custom-types";
+import { createStructuredSelector } from "reselect";
 
 import { selectCurrentUser } from "./store/selectors/selectors";
 import theme from "./Theme/theme";
@@ -17,8 +18,13 @@ import { setCurrentUser } from "./store/actions/user";
 
 import "./App.css";
 
-const mapStateToProps = (state: RootState) => ({
-  currentUser: selectCurrentUser(state),
+interface AppSelectors {
+  currentUser: User;
+}
+
+// Using createStructuredSelector because in the future there will be more selectors
+const mapStateToProps = createStructuredSelector<RootState, AppSelectors>({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<UserActionTypes>) => ({
