@@ -6,7 +6,7 @@ This is a frontend focused e-commerce web application built using ReactJS, Redux
 
 ## Demo
 
-Demo link will be available soon
+You can access the demo version of the app here -> [click here](https://online-e-shop-app.herokuapp.com/)
 
 ## Prerequisites
 
