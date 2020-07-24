@@ -32,6 +32,11 @@ const CartItems = styled.div`
   overflow: scroll;
 `;
 
+const EmptyMessage = styled.span`
+  font-size: 18px;
+  margin: 50px auto;
+`;
+
 interface CartDropdownSelectors {
   cartItems: ShopItem[];
 }
@@ -54,9 +59,11 @@ const Cart: React.FC<CartProps> = ({
 }) => (
   <CartDropdown>
     <CartItems>
-      {cartItems.map((item) => (
-        <CartItem key={item.id} item={item} />
-      ))}
+      {cartItems.length ? (
+        cartItems.map((item) => <CartItem key={item.id} item={item} />)
+      ) : (
+        <EmptyMessage>Your cart is empty</EmptyMessage>
+      )}
     </CartItems>
     <CustomButton
       css={{ marginTop: "auto" }}
