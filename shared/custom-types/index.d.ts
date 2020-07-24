@@ -21,6 +21,7 @@ declare module "custom-types" {
     name: string;
     imageUrl: string;
     price: number;
+    quantity: number;
   };
 
   export type ShopCollection = {
@@ -39,6 +40,7 @@ declare module "custom-types" {
     theme: {
       colors: {
         mainColor: string;
+        backgroundColor: string;
         subColor: string;
         buttonColor: string;
         buttonTextColor: string;
@@ -48,23 +50,38 @@ declare module "custom-types" {
     };
   };
 
-  // REDUX TYPES
-  export type SetCurrentUserType = 'SET_CURRENT_USER';
+  // REDUX USER TYPES
+  export type SetCurrentUserType = "SET_CURRENT_USER";
 
   export type User = Object | null;
 
   export interface UserState {
-      currentUser: User
-  }
-
-  export interface RootState {
-      user: UserState;
+    currentUser: User;
   }
 
   interface SetCurrentUser {
-      type: SetCurrentUserType,
-      payload: User
+    type: SetCurrentUserType;
+    payload: User;
   }
 
-  export type UserActionTypes = SetCurrentUser
+  export type UserActionTypes = SetCurrentUser;
+
+  // REDUX CART TYPES
+  export type ToggleCartHiddenType = "TOGGLE_CART_HIDDEN";
+  export type AddCartItemType = "ADD_CART_ITEM";
+
+  export interface CartState {
+    hidden: boolean;
+    cartItems: Array<ShopItem>;
+  }
+
+  export type CartActionTypes = {
+    type: ToggleCartHiddenType | AddCartItemType;
+    payload?: ShopItem;
+  };
+
+  export interface RootState {
+    user: UserState;
+    cart: CartState;
+  }
 }

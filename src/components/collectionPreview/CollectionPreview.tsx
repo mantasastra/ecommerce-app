@@ -7,7 +7,7 @@ import CollectionItem from "../../components/collectionItem/CollectionItem";
 const Collection = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin: auto 2rem 30px 2rem;
 `;
 
 const Title = styled.h1`
@@ -30,8 +30,8 @@ const CollectionPreview: React.FunctionComponent<ShopCollection> = ({
       <Preview>
         {items
           .filter((item, index) => index < 4)
-          .map(({ id, ...itemProps }) => (
-            <CollectionItem {...itemProps} key={id as number} />
+          .map((item) => (
+            <CollectionItem key={item.id as number} item={item} />
           ))}
       </Preview>
     </Collection>
