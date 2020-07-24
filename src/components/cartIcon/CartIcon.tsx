@@ -29,18 +29,25 @@ const ItemCount = styled.span`
   bottom: 12px;
 `;
 
+const mapStateToProps = ({ cart: { cartItems } }: RootState) => ({
+  itemCount: cartItems.reduce(
+    (accumulator, currentItem) => accumulator + currentItem.quantity,
+    0
+  ),
+});
+
 const mapDispatchToProps = (dispatch: Dispatch<CartActionTypes>) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-const connector = connect(null, mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type CartProps = ConnectedProps<typeof connector>;
 
-const CartIcon = ({ toggleCartHidden }: CartProps) => (
+const CartIcon = ({ toggleCartHidden, itemCount }: CartProps) => (
   <Icon onClick={toggleCartHidden}>
     <ShoppingIcon />
-    <ItemCount>0</ItemCount>
+    <ItemCount>{itemCount}</ItemCount>
   </Icon>
 );
 
