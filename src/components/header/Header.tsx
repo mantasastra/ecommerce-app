@@ -11,10 +11,10 @@ import { ReactComponent as LogoSVG } from "../../assets/images/logo.svg";
 
 const Nav = styled.nav`
   height: 70px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  margin-right: 1.5rem;
 `;
 
 const LogoContainer = styled(Link)`

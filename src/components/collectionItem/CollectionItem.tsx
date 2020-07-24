@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { ShopItem } from "custom-types";
+import { Dispatch } from "redux";
+import { connect, ConnectedProps } from "react-redux";
+import { CartActionTypes, ShopItem } from "custom-types";
 
 import CustomButton from "../customButton/CustomButton";
+import { addCartItem } from "../../store/actions/cart";
 
 const Item = styled.div`
   width: 22%;
@@ -14,11 +17,13 @@ const Item = styled.div`
 
   &:hover {
     .image {
+      transition: 0.2s ease-in;
       opacity: 0.8;
     }
 
     .btn {
-      opacity: 0.5;
+      transition: 0.2s ease-in;
+      opacity: 0.7;
       display: flex;
     }
   }
@@ -30,6 +35,7 @@ const Image = styled.div`
   background-size: cover;
   background-position: center;
   margin-bottom: 5px;
+  transition: 0.2s ease-out;
 `;
 
 const Footer = styled.div`
@@ -57,12 +63,21 @@ const Button = styled(CustomButton)`
   display: none;
 `;
 
-const CollectionItem: React.FunctionComponent<ShopItem> = ({
-  id,
-  name,
-  price,
-  imageUrl,
-}: ShopItem) => {
+const mapDispatchToProps = (dispatch: Dispatch<CartActionTypes>) => ({
+  addCartItem: (item: ShopItem) => dispatch(addCartItem(item)),
+});
+
+const connector = connect(null, mapDispatchToProps);
+
+type CollectionItemProps = ConnectedProps<typeof connector> & {
+  item: ShopItem;
+};
+
+const CollectionItem: React.FC<CollectionItemProps> = ({
+  item,
+  addCartItem,
+}) => {
+  const { name, price, imageUrl } = item;
   return (
     <Item>
       <Image
@@ -76,11 +91,16 @@ const CollectionItem: React.FunctionComponent<ShopItem> = ({
         <FooterPrice>{price}&euro;</FooterPrice>
       </Footer>
 
-      <Button className="btn" isGoogleSignIn={false} inverted>
+      <Button
+        onClick={() => addCartItem(item)}
+        className="btn"
+        isGoogleSignIn={false}
+        inverted
+      >
         Add to cart
       </Button>
     </Item>
   );
 };
 
-export default CollectionItem;
+export default connector(CollectionItem);

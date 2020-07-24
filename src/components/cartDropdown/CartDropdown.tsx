@@ -12,6 +12,7 @@ const CartDropdown = styled.div`
   height: 340px;
   display: flex;
   flex-direction: column;
+  margin-right: 2rem;
   padding: 20px;
   border: 1px solid ${({ theme }: ThemeProps) => theme.colors.mainColor};
   background-color: ${({ theme }: ThemeProps) => theme.colors.backgroundColor};
