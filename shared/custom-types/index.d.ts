@@ -21,6 +21,7 @@ declare module "custom-types" {
     name: string;
     imageUrl: string;
     price: number;
+    quantity: number;
   };
 
   export type ShopCollection = {
