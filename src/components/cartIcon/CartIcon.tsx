@@ -5,6 +5,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { CartActionTypes, RootState } from "custom-types";
 
 import { toggleCartHidden } from "../../store/actions/cart";
+import { selectCartItemsCount } from "../../store/selectors/selectors";
 import { ReactComponent as ShoppingBag } from "../../assets/images/shopping-bag.svg";
 
 const Icon = styled.div`
@@ -29,11 +30,8 @@ const ItemCount = styled.span`
   bottom: 12px;
 `;
 
-const mapStateToProps = ({ cart: { cartItems } }: RootState) => ({
-  itemCount: cartItems.reduce(
-    (accumulator, currentItem) => accumulator + currentItem.quantity,
-    0
-  ),
+const mapStateToProps = (state: RootState) => ({
+  itemCount: selectCartItemsCount(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<CartActionTypes>) => ({

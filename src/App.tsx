@@ -6,6 +6,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { RootState, UserActionTypes, User } from "custom-types";
 
+import { selectCurrentUser } from "./store/selectors/selectors";
 import theme from "./Theme/theme";
 import Header from "./components/header/Header";
 import HomePage from "./pages/homePage/HomePage";
@@ -16,8 +17,8 @@ import { setCurrentUser } from "./store/actions/user";
 
 import "./App.css";
 
-const mapStateToProps = ({ user }: RootState) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = (state: RootState) => ({
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<UserActionTypes>) => ({

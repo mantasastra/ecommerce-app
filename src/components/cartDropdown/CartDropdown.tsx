@@ -5,6 +5,7 @@ import { jsx } from "@emotion/core";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState, ShopItem, ThemeProps } from "custom-types";
 
+import { selectCartItems } from "../../store/selectors/selectors";
 import CustomButton from "../customButton/CustomButton";
 import CartItem from "../cartItem/CartItem";
 
@@ -30,8 +31,8 @@ const CartItems = styled.div`
   overflow: scroll;
 `;
 
-const mapStateToProps = ({ cart }: RootState) => ({
-  cartItems: cart.cartItems,
+const mapStateToProps = (state: RootState) => ({
+  cartItems: selectCartItems(state),
 });
 
 const connector = connect(mapStateToProps, null);
