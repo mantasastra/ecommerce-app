@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "es2019"],
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2019"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,9 +21,18 @@
     "jsx": "react",
     "outDir": "dist",
     "rootDir": "src",
-    "typeRoots": ["node_modules/@types", "shared/custom-type"]
+    "typeRoots": [
+      "node_modules/@types",
+      "shared/custom-type"
+    ]
   },
-  "include": ["src"],
-  "exclude": ["node_modules"],
-  "files": ["./shared/custom-types/index.d.ts"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./shared/custom-types/index.d.ts"
+  ]
 }
