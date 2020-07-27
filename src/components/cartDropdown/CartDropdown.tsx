@@ -8,6 +8,7 @@ import { RootState, ShopItem, ThemeProps } from "custom-types";
 import { createStructuredSelector } from "reselect";
 
 import { selectCartItems } from "../../store/selectors/selectors";
+import { toggleCartHidden } from "../../store/actions/cart";
 import CustomButton from "../customButton/CustomButton";
 import CartItem from "../cartItem/CartItem";
 
@@ -53,7 +54,7 @@ const connector = connect(mapStateToProps);
 
 type CartProps = ConnectedProps<typeof connector> & RouteComponentProps;
 
-const Cart: React.FC<CartProps> = ({ cartItems, history }) => (
+const Cart: React.FC<CartProps> = ({ cartItems, history, dispatch }) => (
   <CartDropdown>
     <CartItems>
       {cartItems.length ? (
@@ -66,7 +67,10 @@ const Cart: React.FC<CartProps> = ({ cartItems, history }) => (
       css={{ marginTop: "auto" }}
       isGoogleSignIn={false}
       inverted={false}
-      onClick={() => history.push("/checkout")}
+      onClick={() => {
+        history.push("/checkout");
+        dispatch(toggleCartHidden());
+      }}
     >
       GO TO CHECKOUT
     </CustomButton>

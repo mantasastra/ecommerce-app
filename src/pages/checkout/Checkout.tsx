@@ -2,13 +2,14 @@ import React from "react";
 import styled from "@emotion/styled";
 import { connect, ConnectedProps } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { RootState, ShopItem } from "custom-types";
 
 import {
   selectCartItems,
   selectCartTotal,
 } from "../../store/selectors/selectors";
 import theme from "../../Theme/theme";
-import { RootState, ShopItem } from "custom-types";
+import CheckoutItem from "../../components/checkoutItem/CheckoutItem";
 
 const CheckoutPage = styled.div`
   width: 55%;
@@ -75,7 +76,9 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, total }) => (
         <span>Remove</span>
       </HeaderBlock>
     </CheckoutHeader>
-    {cartItems.map((item) => item.name)}
+    {cartItems.map((item) => (
+      <CheckoutItem key={item.id as number} cartItem={item} />
+    ))}
 
     <Total>
       <span>TOTAL: {total}&euro;</span>
