@@ -7,6 +7,7 @@ const theme = {
     buttonTextColor: "#ffffff",
     buttonBackgroundColor: "#ffffff",
     buttonHoverTextColor: "#000000",
+    darkGrey: "darkgrey",
   },
 };
 
