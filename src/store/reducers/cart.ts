@@ -4,8 +4,9 @@ import {
   TOGGLE_CART_HIDDEN,
   ADD_CART_ITEM,
   CLEAR_ITEM_FROM_CART,
+  REMOVE_CART_ITEM,
 } from "../actions/actionTypes";
-import { addItemToCart } from "../utils/utils";
+import { addItemToCart, removeItemFromCart } from "../utils/utils";
 
 const initState: CartState = {
   hidden: true,
@@ -24,6 +25,13 @@ const cartReducer = (state = initState, action: CartActionTypes) => {
         action.payload && {
           ...state,
           cartItems: addItemToCart(state.cartItems, action.payload),
+        }
+      );
+    case REMOVE_CART_ITEM:
+      return (
+        action.payload && {
+          ...state,
+          cartItems: removeItemFromCart(state.cartItems, action.payload),
         }
       );
     case CLEAR_ITEM_FROM_CART:

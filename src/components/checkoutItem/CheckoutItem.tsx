@@ -5,7 +5,11 @@ import { connect, ConnectedProps } from "react-redux";
 import { CartActionTypes, ShopItem } from "custom-types";
 
 import theme from "../../Theme/theme";
-import { clearItemFromCart } from "../../store/actions/cart";
+import {
+  clearItemFromCart,
+  addCartItem,
+  removeCartItem,
+} from "../../store/actions/cart";
 
 const Item = styled.div`
   width: 100%;
@@ -31,6 +35,19 @@ const Column = styled.div`
   width: 23%;
 `;
 
+const Quantity = styled.div`
+  width: 23%;
+  display: flex;
+`;
+
+const Arrow = styled.div`
+  cursor: pointer;
+`;
+
+const Value = styled.span`
+  margin: 0 10px;
+`;
+
 const RemoveButton = styled.div`
   padding-left: 12px;
   cursor: pointer;
@@ -38,6 +55,8 @@ const RemoveButton = styled.div`
 
 const mapDispatchToProps = (dispatch: Dispatch<CartActionTypes>) => ({
   clearItem: (item: ShopItem) => dispatch(clearItemFromCart(item)),
+  addItem: (item: ShopItem) => dispatch(addCartItem(item)),
+  removeItem: (item: ShopItem) => dispatch(removeCartItem(item)),
 });
 
 const connector = connect(null, mapDispatchToProps);
@@ -47,7 +66,12 @@ type CheckoutItemProps = ConnectedProps<typeof connector> & {
   cartItem: ShopItem;
 };
 
-const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem, clearItem }) => {
+const CheckoutItem: React.FC<CheckoutItemProps> = ({
+  cartItem,
+  addItem,
+  removeItem,
+  clearItem,
+}) => {
   const { imageUrl, name, quantity, price } = cartItem;
 
   return (
@@ -56,7 +80,11 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem, clearItem }) => {
         <Image src={imageUrl} alt="product" />
       </ImageContainer>
       <Column>{name}</Column>
-      <Column style={{ paddingLeft: "20px" }}>{quantity}</Column>
+      <Quantity>
+        <Arrow onClick={() => removeItem(cartItem)}>&#10094;</Arrow>
+        <Value>{quantity}</Value>
+        <Arrow onClick={() => addItem(cartItem)}>&#10095;</Arrow>
+      </Quantity>
       <Column>{price}</Column>
       <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>
     </Item>
