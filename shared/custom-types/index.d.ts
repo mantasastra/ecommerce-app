@@ -89,5 +89,6 @@ declare module "custom-types" {
   export interface RootState {
     user: UserState;
     cart: CartState;
+    directory: DirectoryState;
   }
 }

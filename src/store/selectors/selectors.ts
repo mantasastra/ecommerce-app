@@ -3,6 +3,7 @@ import { RootState } from "custom-types";
 
 const selectCart = (state: RootState) => state.cart;
 const selectUser = (state: RootState) => state.user;
+const selectDirectory = (state: RootState) => state.directory;
 
 export const selectCartItems = createSelector(
   [selectCart],
@@ -33,4 +34,9 @@ export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
 export const selectCurrentUser = createSelector(
   [selectUser],
   ({ currentUser }) => currentUser
+);
+
+export const selectDirectorySection = createSelector(
+  [selectDirectory],
+  ({ sections }) => sections
 );

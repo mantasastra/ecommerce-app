@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-import { DirectoryProps, DirectoryState, Sections } from "custom-types";
-import DIRECTORY_DATA from "../../data/directoryData";
+import { connect, ConnectedProps } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { RootState, Sections } from "custom-types";
 
 import MenuItem from "../menuItem/MenuItem";
+import { selectDirectorySection } from "../../store/selectors/selectors";
 
 const DirectoryMenu = styled.div`
   width: 100%;
@@ -12,20 +14,28 @@ const DirectoryMenu = styled.div`
   justify-content: space-between;
 `;
 
-class Directory extends Component<DirectoryProps, DirectoryState> {
-  state = {
-    sections: DIRECTORY_DATA as Sections,
-  } as DirectoryState;
-
-  render() {
-    return (
-      <DirectoryMenu>
-        {this.state.sections.map(({ id, ...sectionProps }) => (
-          <MenuItem key={id as number} {...sectionProps} />
-        ))}
-      </DirectoryMenu>
-    );
-  }
+interface DirectorySelectors {
+  sections: Sections;
 }
 
-export default Directory;
+const mapStateToProps = createStructuredSelector<RootState, DirectorySelectors>(
+  {
+    sections: selectDirectorySection,
+  }
+);
+
+const connector = connect(mapStateToProps);
+
+type DirectoryProps = ConnectedProps<typeof connector>;
+
+const Directory: React.FC<DirectoryProps> = ({ sections }) => {
+  return (
+    <DirectoryMenu>
+      {sections.map(({ id, ...sectionProps }) => (
+        <MenuItem key={id} {...sectionProps} />
+      ))}
+    </DirectoryMenu>
+  );
+};
+
+export default connector(Directory);
