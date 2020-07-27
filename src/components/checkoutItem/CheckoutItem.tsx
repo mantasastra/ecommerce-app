@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Dispatch } from "redux";
+import { connect, ConnectedProps } from "react-redux";
+import { CartActionTypes, ShopItem } from "custom-types";
+
 import theme from "../../Theme/theme";
-import { ShopItem } from "custom-types";
+import { clearItemFromCart } from "../../store/actions/cart";
 
 const Item = styled.div`
   width: 100%;
@@ -32,18 +36,31 @@ const RemoveButton = styled.div`
   cursor: pointer;
 `;
 
-const CheckoutItem: React.FC<{ key: number; cartItem: ShopItem }> = ({
-  cartItem: { imageUrl, name, quantity, price },
-}) => (
-  <Item>
-    <ImageContainer>
-      <Image src={imageUrl} alt="product" />
-    </ImageContainer>
-    <Column>{name}</Column>
-    <Column style={{ paddingLeft: "20px" }}>{quantity}</Column>
-    <Column>{price}</Column>
-    <RemoveButton>&#10005;</RemoveButton>
-  </Item>
-);
+const mapDispatchToProps = (dispatch: Dispatch<CartActionTypes>) => ({
+  clearItem: (item: ShopItem) => dispatch(clearItemFromCart(item)),
+});
 
-export default CheckoutItem;
+const connector = connect(null, mapDispatchToProps);
+
+type CheckoutItemProps = ConnectedProps<typeof connector> & {
+  key: number;
+  cartItem: ShopItem;
+};
+
+const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem, clearItem }) => {
+  const { imageUrl, name, quantity, price } = cartItem;
+
+  return (
+    <Item>
+      <ImageContainer>
+        <Image src={imageUrl} alt="product" />
+      </ImageContainer>
+      <Column>{name}</Column>
+      <Column style={{ paddingLeft: "20px" }}>{quantity}</Column>
+      <Column>{price}</Column>
+      <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>
+    </Item>
+  );
+};
+
+export default connector(CheckoutItem);

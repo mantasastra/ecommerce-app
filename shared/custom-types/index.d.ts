@@ -69,6 +69,7 @@ declare module "custom-types" {
   // REDUX CART TYPES
   export type ToggleCartHiddenType = "TOGGLE_CART_HIDDEN";
   export type AddCartItemType = "ADD_CART_ITEM";
+  export type ClearItemFromCart = "CLEAR_ITEM_FROM_CART";
 
   export interface CartState {
     hidden: boolean;
@@ -76,7 +77,7 @@ declare module "custom-types" {
   }
 
   export type CartActionTypes = {
-    type: ToggleCartHiddenType | AddCartItemType;
+    type: ToggleCartHiddenType | AddCartItemType | ClearItemFromCart;
     payload?: ShopItem;
   };
 
