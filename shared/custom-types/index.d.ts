@@ -19,7 +19,7 @@ declare module "custom-types" {
     quantity: number;
   };
 
-  export type ShopCollection = {
+  export type ShopCollections = {
     id?: number;
     key?: number;
     title: string;
@@ -27,9 +27,15 @@ declare module "custom-types" {
     items: ShopItem[];
   };
 
-  export type ShopCollections = ShopCollection[];
+  type Collections = {
+    hats: ShopCollections;
+    sneakers: ShopCollections;
+    jackets: ShopCollections;
+    womens: ShopCollections;
+    mens: ShopCollections;
+  };
 
-  export type ShopState = { collections: ShopCollections };
+  export type ShopState = { collections: Collections };
 
   export type ThemeProps = {
     theme: {
@@ -81,10 +87,14 @@ declare module "custom-types" {
     payload?: ShopItem;
   };
 
+  // REDUX DIRECTORY TYPES
   export type DirectoryActionTypes = {
     type: string;
     payload?: Sections;
   };
+
+  // REDUX COLLECTION TYPES
+  export type Collection = "hats" | "sneakers" | "jackets" | "womens" | "mens";
 
   export type CollectionActionTypes = {
     type: string;

@@ -8,7 +8,7 @@ import CustomButton from "../customButton/CustomButton";
 import { addCartItem } from "../../store/actions/cart";
 
 const Item = styled.div`
-  width: 22%;
+  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -79,7 +79,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 }) => {
   const { name, price, imageUrl } = item;
   return (
-    <Item>
+    <Item className="collection-item">
       <Image
         style={{
           backgroundImage: `url(${imageUrl})`,
