@@ -74,7 +74,7 @@ const Header = ({ currentUser, hidden }: HeaderProps) => (
     </LogoContainer>
     <Options>
       <OptionLink to="/shop">SHOP</OptionLink>
-      <OptionLink to="/contact">CONTACT</OptionLink>
+      {/*<OptionLink to="/contact">CONTACT</OptionLink>*/}
       {currentUser ? (
         <Option onClick={() => auth.signOut()}>SIGN OUT</Option>
       ) : (
