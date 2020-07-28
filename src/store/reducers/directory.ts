@@ -1,4 +1,4 @@
-import { DirectoryState } from "custom-types";
+import { DirectoryActionTypes, DirectoryState } from "custom-types";
 
 const initState: DirectoryState = {
   sections: [
@@ -37,7 +37,7 @@ const initState: DirectoryState = {
   ],
 };
 
-const directoryReducer = (state = initState, action: any) => {
+const directoryReducer = (state = initState, action: DirectoryActionTypes) => {
   switch (action.type) {
     default:
       return state;
