@@ -1,8 +1,8 @@
 import { ShopState, CollectionActionTypes } from "custom-types";
 
 const initState: ShopState = {
-  collections: [
-    {
+  collections: {
+    hats: {
       id: 1,
       title: "Hats",
       routeName: "hats",
@@ -72,7 +72,7 @@ const initState: ShopState = {
         },
       ],
     },
-    {
+    sneakers: {
       id: 2,
       title: "Sneakers",
       routeName: "sneakers",
@@ -135,7 +135,7 @@ const initState: ShopState = {
         },
       ],
     },
-    {
+    jackets: {
       id: 3,
       title: "Jackets",
       routeName: "jackets",
@@ -177,7 +177,7 @@ const initState: ShopState = {
         },
       ],
     },
-    {
+    womens: {
       id: 4,
       title: "Womens",
       routeName: "womens",
@@ -233,7 +233,7 @@ const initState: ShopState = {
         },
       ],
     },
-    {
+    mens: {
       id: 5,
       title: "Mens",
       routeName: "mens",
@@ -282,7 +282,7 @@ const initState: ShopState = {
         },
       ],
     },
-  ],
+  },
 };
 
 const shopReducer = (state = initState, action: CollectionActionTypes) => {

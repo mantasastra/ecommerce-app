@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
-import { RootState } from "custom-types";
+import memoize from "lodash.memoize";
+import { RootState, Collection } from "custom-types";
 
 const selectCart = (state: RootState) => state.cart;
 const selectUser = (state: RootState) => state.user;
@@ -45,4 +46,17 @@ export const selectDirectorySection = createSelector(
 export const selectShopCollections = createSelector(
   [selectShop],
   ({ collections }) => collections
+);
+
+export const selectShopCollectionsForPreview = createSelector(
+  [selectShopCollections],
+  (collections) =>
+    Object.keys(collections).map((key) => collections[key as Collection])
+);
+
+export const selectCollection = memoize((collectionUrlParam: Collection) =>
+  createSelector(
+    [selectShopCollections],
+    (collections) => collections[collectionUrlParam]
+  )
 );

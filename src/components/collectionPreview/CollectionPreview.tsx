@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { ShopCollection } from "custom-types";
+import { ShopCollections } from "custom-types";
 
 import CollectionItem from "../../components/collectionItem/CollectionItem";
 
@@ -20,10 +20,10 @@ const Preview = styled.div`
   justify-content: space-between;
 `;
 
-const CollectionPreview: React.FunctionComponent<ShopCollection> = ({
+const CollectionPreview: React.FunctionComponent<ShopCollections> = ({
   title,
   items,
-}: ShopCollection) => {
+}: ShopCollections) => {
   return (
     <Collection>
       <Title>{title.toUpperCase()}</Title>

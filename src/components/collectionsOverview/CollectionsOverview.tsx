@@ -5,7 +5,7 @@ import { createStructuredSelector } from "reselect";
 
 import CollectionPreview from "../collectionPreview/CollectionPreview";
 import { RootState, ShopCollections } from "custom-types";
-import { selectShopCollections } from "../../store/selectors/selectors";
+import { selectShopCollectionsForPreview } from "../../store/selectors/selectors";
 
 const Overview = styled.div`
   display: flex;
@@ -13,14 +13,14 @@ const Overview = styled.div`
 `;
 
 interface CollectionsOverviewSelectors {
-  collections: ShopCollections;
+  collections: ShopCollections[];
 }
 
 const mapStateToProps = createStructuredSelector<
   RootState,
   CollectionsOverviewSelectors
 >({
-  collections: selectShopCollections,
+  collections: selectShopCollectionsForPreview,
 });
 
 const connector = connect(mapStateToProps);
