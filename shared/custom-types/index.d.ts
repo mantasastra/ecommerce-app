@@ -1,6 +1,4 @@
 declare module "custom-types" {
-  export type DirectoryProps = any;
-
   export type DirectoryState = { sections: Sections };
 
   export type Sections = Section[];
@@ -13,11 +11,8 @@ declare module "custom-types" {
     size?: string;
   };
 
-  export type ShopProps = any;
-
   export type ShopItem = {
     id?: number;
-    key: number;
     name: string;
     imageUrl: string;
     price: number;
@@ -26,7 +21,7 @@ declare module "custom-types" {
 
   export type ShopCollection = {
     id?: number;
-    key: number;
+    key?: number;
     title: string;
     routeName: string;
     items: ShopItem[];
@@ -86,8 +81,20 @@ declare module "custom-types" {
     payload?: ShopItem;
   };
 
+  export type DirectoryActionTypes = {
+    type: string;
+    payload?: Sections;
+  };
+
+  export type CollectionActionTypes = {
+    type: string;
+    payload?: ShopCollection;
+  };
+
   export interface RootState {
     user: UserState;
     cart: CartState;
+    directory: DirectoryState;
+    shop: ShopState;
   }
 }

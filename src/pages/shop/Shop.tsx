@@ -1,27 +1,29 @@
-import React, { Component } from "react";
-import styled from "@emotion/styled";
-import { ShopProps, ShopState, ShopCollections } from "custom-types";
-import SHOP_DATA from "../../data/shopData";
+import React from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { ShopCollections, RootState } from "custom-types";
 
 import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
+import { selectShopCollections } from "../../store/selectors/selectors";
 
-const Shop = styled.div``;
-
-class ShopPage extends Component<ShopProps, ShopState> {
-  state = {
-    collections: SHOP_DATA as ShopCollections,
-  } as ShopState;
-
-  render() {
-    const { collections } = this.state;
-    return (
-      <Shop>
-        {collections.map(({ id, ...collectionProps }) => (
-          <CollectionPreview {...collectionProps} key={id as number} />
-        ))}
-      </Shop>
-    );
-  }
+interface ShopSelectors {
+  collections: ShopCollections;
 }
 
-export default ShopPage;
+const mapStateToProps = createStructuredSelector<RootState, ShopSelectors>({
+  collections: selectShopCollections,
+});
+
+const connector = connect(mapStateToProps);
+
+type ShopProps = ConnectedProps<typeof connector>;
+
+const ShopPage: React.FC<ShopProps> = ({ collections }) => (
+  <div>
+    {collections.map(({ id, ...collectionProps }) => (
+      <CollectionPreview {...collectionProps} key={id as number} />
+    ))}
+  </div>
+);
+
+export default connector(ShopPage);
